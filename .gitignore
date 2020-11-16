@@ -1,0 +1,6 @@
+__pycache__/
+.idea/
+voice.mp3
+setup.py
+packge_version.txt
+onetime.py
