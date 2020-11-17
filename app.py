@@ -1,3 +1,6 @@
+"""
+ Import python packages
+"""
 import chatbot
 import tkinter as tk
 try:
@@ -8,22 +11,24 @@ except ImportError:
     import tkinter.scrolledtext as ScrolledText
 import time
 
-class TkinterGUIExample(tk.Tk):
+""" 
+GUI class contains everythig related to gui
+"""
+class GUI(tk.Tk):
 
+    """
+    Create & set window variables.
+    """
     def __init__(self, *args, **kwargs):
-        """
-        Create & set window variables.
-        """
         tk.Tk.__init__(self, *args, **kwargs)
-
         self.title("Ellie")
-
         self.initialize()
 
+    """ 
+    Set window layout.
+    """
     def initialize(self):
-        """
-        Set window layout.
-        """
+
         self.grid()
 
         self.respond = ttk.Button(self, text='Get Response', command=self.get_response)
@@ -38,18 +43,23 @@ class TkinterGUIExample(tk.Tk):
         self.conversation = ScrolledText.ScrolledText(self, state='disabled')
         self.conversation.grid(column=0, row=2, columnspan=2, sticky='nesw', padx=3, pady=3)
 
-    def get_response(self):
-        """
+    """
         Get a response from the chatbot and display it.
-        """
+    """
+    def get_response(self):
+        """ get response from textbox"""
         # user_input = self.usr_input.get()
         # self.usr_input.delete(0, tk.END)
 
+        """ get response from mic"""
         user_input = chatbot.getAudio()
 
+        """ get response from chatbot """
         output = chatbot.chat(user_input)
 
         self.conversation['state'] = 'normal'
+
+        """ show oputput """
         self.conversation.insert(
             tk.END, "Human: " + user_input + "\n" + "ChatBot: " + output + "\n"
         )
@@ -57,5 +67,10 @@ class TkinterGUIExample(tk.Tk):
 
         time.sleep(0.5)
 
-gui_example = TkinterGUIExample()
-gui_example.mainloop()
+def main():
+    root = GUI()
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+
