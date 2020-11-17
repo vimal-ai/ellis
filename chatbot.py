@@ -80,16 +80,16 @@ def speek(text):
 """
 get input from mic
 """
-# def getAudio():
-#     r = sr.Recognizer()
-#     with sr.Microphone() as source:
-#         audio = r.listen(source)
-#         said = ""
-#         try:
-#             said = r.recognize_google(audio)
-#         except Exception as e:
-#             return str(e)
-#     return said
+def getAudio():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        said = ""
+        try:
+            said = r.recognize_google(audio)
+        except Exception as e:
+            return str(e)
+    return said
 """
 for automation in computer
 """

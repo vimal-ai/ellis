@@ -48,11 +48,11 @@ class GUI(tk.Tk):
     """
     def get_response(self):
         """ get response from textbox"""
-        user_input = self.usr_input.get()
-        self.usr_input.delete(0, tk.END)
+        # user_input = self.usr_input.get()
+        # self.usr_input.delete(0, tk.END)
 
         """ get response from mic"""
-        #user_input = chatbot.getAudio()
+        user_input = chatbot.getAudio()
         #print("0")
         """ get response from chatbot """
         output = chatbot.chat(user_input)
