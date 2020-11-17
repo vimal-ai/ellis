@@ -36,7 +36,6 @@ dependencies:
     - pyaudio==0.2.11
     - pycairo==1.20.0
     - pygobject==3.38.0
-    - pyinstaller==4.0
     - pyinstaller-hooks-contrib==2020.10
     - python-dateutil==2.8.1
     - pytz==2020.4
