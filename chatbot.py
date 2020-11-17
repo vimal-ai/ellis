@@ -3,6 +3,7 @@ Import python packages
 """
 import subprocess
 from datetime import datetime
+import os
 
 import filePath
 from Memory import Memory
@@ -102,29 +103,48 @@ def doTask(output):
     """try except block: if file not found then program don't get crashed"""
     try:
         if 'firefox' in output:
-            subprocess.call(filePath.firefox)
+            path = filePath.root_path + filePath.firefox
+            os.system(path)
+
         elif 'terminal' in output:
-            subprocess.call(filePath.terminal)
+            os.system(filePath.terminal)
+
         elif 'webcam' in output:
-            subprocess.call(filePath.webcam)
+            path = filePath.root_path + filePath.webcam
+            os.system(path)
+
         # elif 'calculator' in output:
         #     subprocess.call(filePath.calculator)
+        #    os.system(path)
+
         # elif 'file manager' in output:
         #     subprocess.call(filePath.files)
+        #    os.system(path)
+
         elif 'vs code' in output:
-            subprocess.call(filePath.vsCode)
+            path = filePath.root_path + filePath.vsCode
+            os.system(path)
+
         elif 'pycharm' in output:
-            subprocess.call(filePath.pycharm)
+            path = filePath.root_path + filePath.pycharm
+            os.system(path)
+
         elif 'anaconda navigator' in output:
-            subprocess.call(filePath.conda)
+            path = filePath.root_path + filePath.conda
+            os.system(path)
+
         # elif 'text editor' in output:
         #     subprocess.call(filePath.text)
-        # elif 'system monitor' in output:
-        #     subprocess.call(filePath.sysm)
+        #    os.system(path)
+
         elif 'discord' in output:
-            subprocess.call(filePath.discord)
+            path = filePath.root_path + filePath.discord
+            os.system(path)
+            #subprocess.call(filePath.discord)
         elif 'thunderbird' in output:
-            subprocess.call(filePath.email)
+            path = filePath.root_path + filePath.email
+            os.system(path)
+
         elif 'time' in output:
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
