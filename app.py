@@ -67,10 +67,10 @@ class GUI(tk.Tk):
 
         time.sleep(0.5)
 
-# def main():
-root = GUI()
-root.mainloop()
+def main():
+    root = GUI()
+    root.mainloop()
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
 
