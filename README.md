@@ -8,5 +8,5 @@ install pyaudio for windows if you get any error<br>
 
 sudo apt-get install pkg-config libcairo2-dev gcc python3-dev libgirepository1.0-dev<br>
 pip install gobject PyGObject<br>
-sudo apt-get install portaudio19-dev python-pyaudio<br>
+sudo apt-get install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0<br>
 pip install PyAudio<br>
