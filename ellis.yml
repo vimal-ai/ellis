@@ -22,7 +22,6 @@ dependencies:
   - xz=5.2.5=h7b6447c_0
   - zlib=1.2.11=h7b6447c_3
   - pip:
-    - altgraph==0.17
     - chardet==3.0.4
     - click==7.1.2
     - gobject==0.1.0
@@ -36,21 +35,15 @@ dependencies:
     - pyaudio==0.2.11
     - pycairo==1.20.0
     - pygobject==3.38.0
-    - pyinstaller-hooks-contrib==2020.10
     - python-dateutil==2.8.1
     - pytz==2020.4
     - regex==2020.11.13
     - requests==2.25.0
-    - ruamel-yaml==0.16.12
-    - ruamel-yaml-clib==0.2.2
     - scikit-learn==0.22.2.post1
     - scipy==1.5.4
     - six==1.15.0
     - speechrecognition==3.8.1
-    - threadpoolctl==2.1.0
-    - tqdm==4.51.0
+    - tqdm==4.52.0
     - urllib3==1.26.2
-    - vext==0.7.4
-    - vext-gi==0.7.4
 prefix: /home/vimal/anaconda3/envs/ellis
 
