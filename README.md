@@ -35,7 +35,7 @@ you can download your apropriate vertion of pyaudio from here if you get any err
 [pyaudio windows](https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio)<br>
 
 ### data preprocessing<br>
-I tried count vectorizer and if-idf vectorizer for word to vec process I found that tf-idf works more efficient in this case. because of many words occur to many times but they are not much usefull to understand the context of sentence like (what, are, is, etc) and we can not directly remove this words as stop words because we will loose some information. while we talking sentences are usually small so we can't loose any relevet information. so tf-idf vectorizer is best way to prevent that for light weight models.
+I tried count vectorizer and if-idf vectorizer for word to vec process I found that tf-idf works more efficient in this case. because of many words occur to many times but they are not much usefull to understand the context of sentence like (what, are, is, etc) and we can not directly remove this words as stop words because we will loose some information. while we talking sentences are usually small so we can't loose any relevant information. so tf-idf vectorizer is best way to prevent that for light weight models.
 <br>
 ### modeling<br>
 I used multinomial naive byes for this dataset becouse naive byes aproch work well for text data becouse it work on probability.<br>
