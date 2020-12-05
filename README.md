@@ -19,6 +19,8 @@ ellis is chatbot based on multinomial navai byes algorithm. <br>
 
 ### demo<br>
 
+![conversation](https://github.com/vimal-ai/ellis/blob/master/data/chatbotDemo.png)
+
 ### setup<br>
 #### a. linux:<br>
 some linux dependency<br>
