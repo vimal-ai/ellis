@@ -8,7 +8,7 @@ import os
 import filePath
 from Memory import Memory
 
-import playsound
+#import playsound
 import speech_recognition as sr
 from gtts import gTTS
 
@@ -21,11 +21,11 @@ ps = PorterStemmer()
 """
 read model, word2vec and data file
 """
-filename = './models/nlu.sav'
+filename = './models/nlu_2.0.sav'
 nlu = pickle.load(open(filename, 'rb'))
-filename = './models/word2vec.sav'
+filename = './models/word2vec_2.0.sav'
 word2vec = pickle.load(open(filename, 'rb'))
-filename = './data/data.csv'
+filename = './data/data_2.0.csv'
 df = pd.read_csv(filename)
 
 """
@@ -62,11 +62,22 @@ def chat(ip):
     else:
         output = df[df['id'] == ans[0]]['answer'].values[count]
 
+    output = clean(output)
+
     if 'task' in ans[0]:
-        temp = doTask(output)
+        temp = doTask(output, test[0])
         if type(temp) == str:
             output = temp
-    speek(output)
+
+    #speek(output)
+    return output
+
+"""
+method for cleaning output text
+"""
+def clean(output):
+    if("{" in output):
+        output = output.replace("{name}", "vimal")
     return output
 
 """
@@ -99,19 +110,24 @@ def getAudio():
 """
 for automation in computer
 """
-def doTask(output):
+def doTask(output, test):
     """try except block: if file not found then program don't get crashed"""
+    print(test)
+    task = ""
     try:
-        if 'firefox' in output:
+        if 'firefox' in test:
             path = filePath.root_path + filePath.firefox
             os.system(path)
+            task = "firefox"
 
-        elif 'terminal' in output:
+        elif 'terminal' in test:
             os.system(filePath.terminal)
+            task = "terminal"
 
-        elif 'webcam' in output:
+        elif 'webcam' in test:
             path = filePath.root_path + filePath.webcam
             os.system(path)
+            task = "webcam"
 
         # elif 'calculator' in output:
         #     subprocess.call(filePath.calculator)
@@ -121,35 +137,42 @@ def doTask(output):
         #     subprocess.call(filePath.files)
         #    os.system(path)
 
-        elif 'vs code' in output:
+        elif 'vs code' in test:
             path = filePath.root_path + filePath.vsCode
             os.system(path)
+            task = "vs code"
 
-        elif 'pycharm' in output:
+        elif 'pycharm' in test:
             path = filePath.root_path + filePath.pycharm
             os.system(path)
+            task = "pycharm"
 
-        elif 'anaconda navigator' in output:
+        elif 'anaconda navigator' in test:
             path = filePath.root_path + filePath.conda
             os.system(path)
+            task = "anaconda navigator"
 
         # elif 'text editor' in output:
         #     subprocess.call(filePath.text)
         #    os.system(path)
 
-        elif 'discord' in output:
+        elif 'discord' in test:
             path = filePath.root_path + filePath.discord
             os.system(path)
+            task = "discord"
             #subprocess.call(filePath.discord)
-        elif 'thunderbird' in output:
+        elif 'thunderbird' in test:
             path = filePath.root_path + filePath.email
             os.system(path)
+            task = "thunderbird"
 
         elif 'time' in output:
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
             return current_time
+
         else:
-            pass
+            return "not available"
+
     except Exception as e:
         return str(e)
