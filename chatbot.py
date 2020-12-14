@@ -1,15 +1,13 @@
 """
 Import python packages
 """
-<<<<<<< HEAD
+
 #import subprocess
-=======
 import datetime
 # for timezone()
 import pytz
 
 import subprocess
->>>>>>> fafb8d475a0dc491c4590194cb157d379b9c4d4f
 from datetime import datetime
 import os
 
