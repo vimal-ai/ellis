@@ -1,6 +1,10 @@
 """
 Import python packages
 """
+import datetime
+# for timezone()
+import pytz
+
 import subprocess
 from datetime import datetime
 import os
@@ -12,11 +16,14 @@ from Memory import Memory
 import speech_recognition as sr
 from gtts import gTTS
 
+import numpy as np
 import re
 import pandas as pd
 import pickle
 from nltk.stem.porter import PorterStemmer
 ps = PorterStemmer()
+
+personName='' #to store name of the user
 
 """
 read model, word2vec and data file
@@ -36,7 +43,18 @@ m = Memory()
 """
 main method for chatbot
 """
-def chat(ip):
+def chat(ip,correctNameGiven):
+    """
+    To check whether user has given his name or not
+    """
+    if correctNameGiven==False:
+        name=recognizeName(ip)
+        if (name == -1):
+            return (-1)
+        else:
+            correctNameGiven=True
+            return('Hello '+name)
+
     test = []
     review = re.sub('[^a-zA-Z]', ' ', ip)
     review = review.lower()
@@ -76,8 +94,9 @@ def chat(ip):
 method for cleaning output text
 """
 def clean(output):
+    global personName
     if("{" in output):
-        output = output.replace("{name}", "vimal")
+        output = output.replace("{name}", personName)
     return output
 
 """
@@ -176,3 +195,34 @@ def doTask(output, test):
 
     except Exception as e:
         return str(e)
+
+"""
+Greet according to time
+"""
+def greetAtStart():
+    # using now() to get current time
+    current_time = datetime.now(pytz.timezone('Asia/Kolkata'))
+    current_time.hour
+    if current_time.hour < 12:
+        return("Good Morning!")
+    elif current_time.hour == 12:
+        return("Good Noon!")
+    elif current_time.hour > 12 and current_time.hour < 18:
+        return("Good AfterNoon!")
+    elif current_time.hour >= 18:
+        return("Good Evening!")
+
+"""
+getting name of person from the user input
+"""
+def recognizeName(user_ip):
+    global personName
+    ip_list=user_ip.split()
+    for i in ip_list:
+        data=np.load('./names/'+i[0]+'.npy',allow_pickle=True)
+        for j in data:
+          if i==j:
+            personName=i
+            return(i)
+    return(-1)
+
