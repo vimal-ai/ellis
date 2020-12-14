@@ -48,12 +48,12 @@ def chat(ip,correctNameGiven):
     To check whether user has given his name or not
     """
     if correctNameGiven==False:
-        name=recognizeName(ip)
+        name=recognizeName(ip.lower())
         if (name == -1):
             return (-1)
         else:
             correctNameGiven=True
-            return('Hello '+name)
+            return('Hello '+name.title())
 
     test = []
     review = re.sub('[^a-zA-Z]', ' ', ip)
@@ -219,7 +219,7 @@ def recognizeName(user_ip):
     global personName
     ip_list=user_ip.split()
     for i in ip_list:
-        data=np.load('./names/'+i[0]+'.npy',allow_pickle=True)
+        data=np.load('./data/names/'+i[0]+'.npy',allow_pickle=True)
         for j in data:
           if i==j:
             personName=i
