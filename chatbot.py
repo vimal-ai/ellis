@@ -2,30 +2,24 @@
 Import python packages
 """
 
-#import subprocess
 import datetime
-# for timezone()
 import pytz
 
-import subprocess
 from datetime import datetime
 import os
 
 import filePath
 from Memory import Memory
 
-#import playsound
-import speech_recognition as sr
-from gtts import gTTS
-
 import numpy as np
 import re
 import pandas as pd
 import pickle
 from nltk.stem.porter import PorterStemmer
+
 ps = PorterStemmer()
 
-personName='' #to store name of the user
+personName = ''  # to store name of the user
 
 """
 read model, word2vec and data file
@@ -45,17 +39,19 @@ m = Memory()
 """
 main method for chatbot
 """
-def chat(ip,correctNameGiven):
+
+
+def chat(ip, correctNameGiven):
     """
     To check whether user has given his name or not
     """
-    if correctNameGiven==False:
-        name=recognizeName(ip.lower())
+    if correctNameGiven == False:
+        name = recognizeName(ip.lower())
         if (name == -1):
             return (-1)
         else:
-            correctNameGiven=True
-            return('Hello '+name.title())
+            correctNameGiven = True
+            return ('Hello ' + name.title())
 
     test = []
     review = re.sub('[^a-zA-Z]', ' ', ip)
@@ -89,48 +85,27 @@ def chat(ip,correctNameGiven):
         if type(temp) == str:
             output = temp
 
-    #speek(output)
+    # speek(output)
     return output
+
 
 """
 method for cleaning output text
 """
+
+
 def clean(output):
     global personName
-    if("{" in output):
+    if ("{" in output):
         output = output.replace("{name}", personName)
     return output
 
-"""
-method for speek
-"""
-def speek(text):
-    tts = gTTS(text= text, lang = "en")
-    filename = "voice.mp3"
-    tts.save(filename)
-    playsound.playsound(filename)
-
-"""
-get input from mic
-"""
-def getAudio():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print('0')
-        audio = r.listen(source, timeout=2, phrase_time_limit=5)
-        print('1')
-        said = ""
-        try:
-            print('2')
-            said = r.recognize_google(audio)
-            print('3')
-            return said
-        except Exception as e:
-            return str(e)
 
 """
 for automation in computer
 """
+
+
 def doTask(output, test):
     """try except block: if file not found then program don't get crashed"""
     print(test)
@@ -181,7 +156,7 @@ def doTask(output, test):
             path = filePath.root_path + filePath.discord
             os.system(path)
             task = "discord"
-            #subprocess.call(filePath.discord)
+            # subprocess.call(filePath.discord)
         elif 'thunderbird' in test:
             path = filePath.root_path + filePath.email
             os.system(path)
@@ -198,33 +173,38 @@ def doTask(output, test):
     except Exception as e:
         return str(e)
 
+
 """
 Greet according to time
 """
+
+
 def greetAtStart():
     # using now() to get current time
     current_time = datetime.now(pytz.timezone('Asia/Kolkata'))
     current_time.hour
     if current_time.hour < 12:
-        return("Good Morning!")
+        return ("Good Morning!")
     elif current_time.hour == 12:
-        return("Good Noon!")
+        return ("Good Noon!")
     elif current_time.hour > 12 and current_time.hour < 18:
-        return("Good AfterNoon!")
+        return ("Good AfterNoon!")
     elif current_time.hour >= 18:
-        return("Good Evening!")
+        return ("Good Evening!")
+
 
 """
 getting name of person from the user input
 """
+
+
 def recognizeName(user_ip):
     global personName
-    ip_list=user_ip.split()
+    ip_list = user_ip.split()
     for i in ip_list:
-        data=np.load('./data/names/'+i[0]+'.npy',allow_pickle=True)
+        data = np.load('./data/names/' + i[0] + '.npy', allow_pickle=True)
         for j in data:
-          if i==j:
-            personName=i
-            return(i)
-    return(-1)
-
+            if i == j:
+                personName = i
+                return (i)
+    return (-1)
