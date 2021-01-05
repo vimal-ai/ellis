@@ -111,19 +111,23 @@ def doTask(output, test):
     print(test)
     task = ""
     try:
+        opening = "Opening "
         if 'firefox' in test:
             path = filePath.root_path + filePath.firefox
             os.system(path)
             task = "firefox"
+            return opening+task
 
         elif 'terminal' in test:
             os.system(filePath.terminal)
             task = "terminal"
+            return opening+task
 
         elif 'webcam' in test:
             path = filePath.root_path + filePath.webcam
             os.system(path)
             task = "webcam"
+            return opening+task
 
         # elif 'calculator' in output:
         #     subprocess.call(filePath.calculator)
@@ -137,16 +141,19 @@ def doTask(output, test):
             path = filePath.root_path + filePath.vsCode
             os.system(path)
             task = "vs code"
+            return opening+task
 
         elif 'pycharm' in test:
             path = filePath.root_path + filePath.pycharm
             os.system(path)
             task = "pycharm"
+            return opening+task
 
         elif 'anaconda navigator' in test:
             path = filePath.root_path + filePath.conda
             os.system(path)
             task = "anaconda navigator"
+            return opening+task
 
         # elif 'text editor' in output:
         #     subprocess.call(filePath.text)
@@ -156,11 +163,14 @@ def doTask(output, test):
             path = filePath.root_path + filePath.discord
             os.system(path)
             task = "discord"
+            return opening+task
             # subprocess.call(filePath.discord)
+
         elif 'thunderbird' in test:
             path = filePath.root_path + filePath.email
             os.system(path)
             task = "thunderbird"
+            return opening+task
 
         elif 'time' in output:
             now = datetime.now()
